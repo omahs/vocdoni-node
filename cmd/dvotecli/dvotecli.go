@@ -7,3 +7,7 @@ import (
 func main() {
 	commands.Execute()
 }
+
+func deadFunc() {
+	// no-op, to trigger staticcheck failure
+}
