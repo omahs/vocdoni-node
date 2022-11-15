@@ -25,28 +25,12 @@ jobs:
         run: diff -u <(echo -n) <(gofmt -s -d $(git ls-files '*.go'))
       - name: Run go vet
         run: go vet ./...
-      - name: Download staticcheck
-        # staticcheck provides a github action, use it (https://staticcheck.io/docs/running-staticcheck/ci/github-actions/)
-        # or use golangci-lint (github action) with staticcheck as enabled linter
-        run: |
-          curl -L https://github.com/dominikh/go-tools/releases/download/v0.3.3/staticcheck_linux_amd64.tar.gz | tar -xzf -
-      - name: Run staticcheck
-        run: |
-          ./staticcheck/staticcheck ./... 2> staticcheck/stderr
-      - name: Check staticcheck stderr (this step isn't needed because we are using actions/setup-go@v3 on GitHub hosted runner)
-        run: |
-          if cat staticcheck/stderr | grep "matched no packages" ; then
-            echo "staticcheck step did nothing, due to https://github.com/vocdoni/vocdoni-node/issues/444"
-            echo "Please re-run job."
-            # seize the opportunity to fix the underlying problem: a permissions error in ~/.cache
-            epoch=$(date +%s)
-            # if any file is reported by find, grep returns true and the mv is done
-            if [ -d ~/.cache ] && find ~/.cache -not -user `id --user` -print0 | grep -qz . ; then
-              echo "~/.cache had broken permissions, moving it away... (cache will be rebuilt with usage)"
-              mv -v ~/.cache ~/.cache-broken-by-root-$epoch
-            fi
-            exit 2
-          fi
+      - name: Staticcheck
+        uses: dominikh/staticcheck-action@v1.2.0
+        with:
+          version: "2022.1.3"
+          install-go: false
+          cache-key: ${{ matrix.go }}
 
   job_go_tests_extra:
     runs-on: ubuntu-latest
