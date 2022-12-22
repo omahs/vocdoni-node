@@ -33,6 +33,10 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/hashicorp/golang-lru v0.6.0
 	github.com/iden3/go-iden3-crypto v0.0.13
+	github.com/iden3/go-rapidsnark/prover v0.0.9
+	github.com/iden3/go-rapidsnark/types v0.0.2
+	github.com/iden3/go-rapidsnark/verifier v0.0.3
+	github.com/iden3/go-rapidsnark/witness v0.0.3
 	github.com/ipfs/go-cid v0.3.2
 	github.com/ipfs/go-ipfs-files v0.1.1
 	github.com/ipfs/go-ipfs-keystore v0.0.2
@@ -150,10 +154,6 @@ require (
 	github.com/hashicorp/hcl v1.0.1-vault-5 // indirect
 	github.com/holiman/uint256 v1.2.1 // indirect
 	github.com/huin/goupnp v1.0.3 // indirect
-	github.com/iden3/go-rapidsnark/prover v0.0.9 // indirect
-	github.com/iden3/go-rapidsnark/types v0.0.2 // indirect
-	github.com/iden3/go-rapidsnark/verifier v0.0.3 // indirect
-	github.com/iden3/go-rapidsnark/witness v0.0.3 // indirect
 	github.com/ipfs/bbloom v0.0.4 // indirect
 	github.com/ipfs/go-bitfield v1.0.0 // indirect
 	github.com/ipfs/go-bitswap v0.9.0 // indirect

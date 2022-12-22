@@ -12,6 +12,7 @@ import (
 	"go.vocdoni.io/dvote/crypto/ethereum"
 	"go.vocdoni.io/dvote/util"
 	"go.vocdoni.io/dvote/vochain/state"
+	"go.vocdoni.io/dvote/vochain/transaction/vochaintx"
 	"go.vocdoni.io/proto/build/go/models"
 	"google.golang.org/protobuf/proto"
 )
@@ -683,7 +684,10 @@ func TestSendTokensTx(t *testing.T) {
 	err = app.State.CreateAccount(toAccAddr, "ipfs://", [][]byte{}, 0)
 	qt.Assert(t, err, qt.IsNil)
 
-	err = app.State.MintBalance(signer.Address(), 1000)
+	err = app.State.MintBalance(&vochaintx.TransferTokensMeta{
+		ToAddress: signer.Address(),
+		Amount:    1000,
+	})
 	qt.Assert(t, err, qt.IsNil)
 	app.Commit()
 
@@ -773,9 +777,15 @@ func TestSetAccountDelegateTx(t *testing.T) {
 	err = app.State.CreateAccount(signer2.Address(), "ipfs://", [][]byte{}, 0)
 	qt.Assert(t, err, qt.IsNil)
 
-	err = app.State.MintBalance(signer.Address(), 1000)
+	err = app.State.MintBalance(&vochaintx.TransferTokensMeta{
+		ToAddress: signer.Address(),
+		Amount:    1000,
+	})
 	qt.Assert(t, err, qt.IsNil)
-	err = app.State.MintBalance(signer2.Address(), 1000)
+	err = app.State.MintBalance(&vochaintx.TransferTokensMeta{
+		ToAddress: signer2.Address(),
+		Amount:    1000,
+	})
 	qt.Assert(t, err, qt.IsNil)
 	app.Commit()
 
@@ -869,7 +879,10 @@ func TestCollectFaucetTx(t *testing.T) {
 	err = app.State.CreateAccount(toSigner.Address(), "ipfs://", [][]byte{}, 0)
 	qt.Assert(t, err, qt.IsNil)
 
-	err = app.State.MintBalance(signer.Address(), 1000)
+	err = app.State.MintBalance(&vochaintx.TransferTokensMeta{
+		ToAddress: signer.Address(),
+		Amount:    1000,
+	})
 	qt.Assert(t, err, qt.IsNil)
 	app.Commit()
 
