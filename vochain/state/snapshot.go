@@ -32,7 +32,7 @@ const (
 //
 // The structure of the snapshot encoded file is:
 //
-//  [headerLen][header][tree1][tree2][treeN]
+//	[headerLen][header][tree1][tree2][treeN]
 //
 // - headerlen is a fixed 32 bytes little endian number indicating the size of the header.
 //
