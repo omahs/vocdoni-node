@@ -87,4 +87,4 @@ you can simply install `pass`, or an even more simple workaround is to make a du
 ```
 # ln -s /bin/true /usr/local/bin/pass
 ```
-since `docker login` just checks that `pass` is available, but doesn't actually need it for login, all of the repos accesed are public.
+since `docker login` just checks that `pass` is available, but doesn't actually need it for login, all of the repos accessed are public.
