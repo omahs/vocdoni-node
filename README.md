@@ -100,7 +100,7 @@ API methods, SDK and documentation can be found at [the developer portal](https:
 
 #### Testing
 
-The test suite is an all-in-one compose file to bootstrap a minimal testing testing environment. To do a voting process test, follow the examples mentioned in the included README:
+The test suite is an all-in-one compose file to bootstrap a minimal testing environment. To do a voting process test, follow the examples mentioned in the included README:
 
 ```bash
 cd dockerfiles/testsuite
